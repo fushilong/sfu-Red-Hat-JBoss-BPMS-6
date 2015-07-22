@@ -1,5 +1,27 @@
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
 
-  <kbase name="kbase" packages="com.sample"/>
+  <kbase name="kbase" packages="com.sample" />
+  
+  <kbase name="kbase-helloworld" packages="com.sample.helloworld" />
 
+  <kbase name="kbase-johnmary" packages="com.sample.johnandmary" />
+
+  <kbase name="kbase-ruletask" packages="com.sample.ruletask">
+  	<ksession name="default-session" type="stateful" default="true" />
+  </kbase>
+  
+  <kbase name="kbase-gateway" packages="com.sample.gateway" />
+  <kbase name="kbase-subprocess" packages="com.sample.subprocess" />
+  <kbase name="kbase-errorhandling" packages="com.sample.errorhandling" />
+  <kbase name="kbase-looping" packages="com.sample.looping" />
+  <kbase name="kbase-timer" packages="com.sample.timer" />
+  <kbase name="kbase-sendtask" packages="com.sample.sendtask" />
+  
+  <kbase name="kbase-signal" packages="com.sample.signal" />
+  
+  <kbase name="kbase-servicetask" packages="com.sample.servicetask" >
+    <ksession name="defaultWSKieSession" type="stateful" default="true" clockType="realtime" />
+  </kbase>
+  
+  
 </kmodule>
