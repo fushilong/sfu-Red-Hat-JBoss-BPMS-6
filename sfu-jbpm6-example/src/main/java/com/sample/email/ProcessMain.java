@@ -1,10 +1,11 @@
-package com.sample;
+package com.sample.email;
 
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.jbpm.process.workitem.email.EmailWorkItemHandler;
 import org.jbpm.test.JBPMHelper;
 import org.kie.api.KieBase;
 import org.kie.api.KieServices;
@@ -22,14 +23,20 @@ public class ProcessMain {
 	public static void main(String[] args) {
 		KieServices ks = KieServices.Factory.get();
 		KieContainer kContainer = ks.getKieClasspathContainer();
-		KieBase kbase = kContainer.getKieBase("kbase");
+		KieBase kbase = kContainer.getKieBase("kbase-email");
 
 		RuntimeManager manager = createRuntimeManager(kbase);
 		RuntimeEngine engine = manager.getRuntimeEngine(null);
 		KieSession ksession = engine.getKieSession();
+		
+		//Registering Email Service Task's WorkItemHandler
+		EmailWorkItemHandler emailWorkItemHandler = new EmailWorkItemHandler("smtp.163.com","25","82057250","");// Parameters are Host, port, Username, password
+		ksession.getWorkItemManager().registerWorkItemHandler("Email", emailWorkItemHandler );
+		
 		TaskService taskService = engine.getTaskService();
 
-		ksession.startProcess("com.sample.bpmn.hello");
+		//ksession.startProcess("com.sample.bpmn.hello");
+		ksession.startProcess("TestProject.EmailServiceTaskTest");
 
 		// let john execute Task 1
 		List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner("john", "en-UK");

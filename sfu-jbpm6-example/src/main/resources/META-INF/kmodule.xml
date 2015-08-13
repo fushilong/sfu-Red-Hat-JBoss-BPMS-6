@@ -18,7 +18,7 @@
   <kbase name="kbase-sendtask" packages="com.sample.sendtask" />
   
   <kbase name="kbase-signal" packages="com.sample.signal" />
-  
+  <kbase name="kbase-email" packages="com.sample.email" />
   <kbase name="kbase-servicetask" packages="com.sample.servicetask" >
     <ksession name="defaultWSKieSession" type="stateful" default="true" clockType="realtime" />
   </kbase>
